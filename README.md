@@ -1,3 +1,4 @@
+
 ### Introduction
 
 This second programming assignment will require you to write an R
@@ -86,6 +87,58 @@ function in R. For example, if `X` is a square invertible matrix, then
 For this assignment, assume that the matrix supplied is always
 invertible.
 
+## Put comments here that give an overall description of what your
+## functions do
+##
+## Overall Description 
+##    Matrix inversion can be a costly computation so the use
+##    of caching to obtain the inverse of a matrix.  
+##    The following two funcrions are used to cache the 
+##    inverse of a matrix.
+##
+## Write a short comment describing this function
+##
+##  The makeCacheMatrix creates a list containing a function to
+##   1. Set the value of the matrix
+##   2. Get the value of the matrix
+##   3. Set the value of the inverse of the matrix
+##   4. Get the value of the inverse of the matrix  
+##
+makeCacheMatrix <- function(x = matrix()) {
+  cacheinv <- NULL
+  set <- function (y) {
+    x <<- y
+    cacheinv <<- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) cacheinv <<- inverse
+  getinverse <- function() cacheinv
+  list(set=set,get+get,setinverse=setinvers,getinverse=getinverse)
+}
+
+
+## Write a short comment describing this function
+##
+##  The following function will return the inverse of the matrix.
+##  First we check to see if the inverse has already been computed.
+##  If the inverse has been computed, we get the result.
+##  If the inverse has not been computed, we use the setinverse 
+##  function to obtain the inverse of the cached data. 
+
+cacheSolve <- function(x, ...) {
+        ## Return a matrix that is the inverse of 'x'
+  cacheinv < x$getinverse()
+  if (!is.null(inv)) {
+    message("obtaining cached data,")
+    return(cacheinv)
+  }
+  data <- x$get()
+  cacheinv <- solve(data)
+  x$setinverse(cacheinv)
+  cacheinv
+}
+
+
 In order to complete this assignment, you must do the following:
 
 1.  Fork the GitHub repository containing the stub R files at
@@ -103,3 +156,4 @@ In order to complete this assignment, you must do the following:
 ### Grading
 
 This assignment will be graded via peer assessment.
+
